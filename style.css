@@ -1,0 +1,13 @@
+/*
+Theme Name: Karma
+Theme URI: https://karma.com.tr
+Description: Karma kadın ve erkek giyim mağazası için WooCommerce teması. Tailwind CSS ile yazıldı; telefon, tablet ve masaüstüne uyumlu.
+Author: İrem Erdoğan
+Version: 1.0.0
+Requires at least: 6.4
+Requires PHP: 8.0
+WC requires at least: 8.0
+Text Domain: karma
+*/
+
+/* Stiller assets/css/app.css içinde (Tailwind ile derlenir). Bu dosya yalnızca tema bilgisini taşır. */

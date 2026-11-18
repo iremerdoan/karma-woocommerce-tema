@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-krem font-sans text-normal text-espresso antialiased; font-optical-sizing: auto; }
+  a { @apply transition-colors; }
+  :focus-visible { @apply outline outline-2 outline-offset-2 outline-karamel; }
+}
+
+@layer components {
+  /* Ortak kapsayıcı: masaüstünde 1200px içerik, mobilde 16px kenar */
+  .kapsayici { @apply mx-auto w-full max-w-site px-4 md:px-6; }
+
+  /* Buton — Figma "Buton" bileşeni: Dolu / Çizgili / Koyu */
+  .btn { @apply inline-flex items-center justify-center rounded-full px-8 py-[14px] text-normal font-semibold transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-dolu { @apply bg-karamel text-white hover:bg-[#744a30]; }
+  .btn-cizgili { @apply border-[1.5px] border-espresso py-[12.5px] text-espresso hover:bg-espresso hover:text-krem; }
+  .btn-koyu { @apply bg-espresso text-krem hover:bg-black; }
+
+  /* Logo — altın gradyanlı yazı */
+  .logo-yazi {
+    @apply font-serif font-semibold leading-none;
+    letter-spacing: 0.2em;
+    background-image: linear-gradient(90deg, #8e5f2c 0%, #d9b26e 28%, #f6e3b0 45%, #b8873f 60%, #e8c987 80%, #94642f 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 1px 1px rgba(92, 59, 31, .22));
+  }
+
+  /* Bölüm başlığı */
+  .baslik-h2 { @apply font-serif text-[32px] font-medium leading-[1.2] md:text-h2; }
+  .ust-etiket { @apply text-etiket font-semibold uppercase; }
+
+  /* Form alanı */
+  .girdi { @apply h-[52px] w-full rounded-full border-[1.5px] border-cizgi-orta bg-beyaz px-[18px] text-normal text-espresso placeholder:text-ikincil focus:border-espresso focus:outline-none; }
+
+  /* Ürün sayfası akordiyon oku */
+  details[open] > summary .akordiyon-ok { transform: rotate(180deg); }
+  details > summary { list-style: none; }
+  details > summary::-webkit-details-marker { display: none; }
+}
+
+/* ---------------------------------------------------------------
+   WooCommerce varsayılan stillerinin üzerine Karma görünümü
+   --------------------------------------------------------------- */
+.woocommerce .karma-sepet-formu form.cart { @apply m-0 block; }
+.woocommerce .karma-sepet-formu table.variations { @apply m-0 mb-7 block w-full border-0; }
+.woocommerce .karma-sepet-formu .woocommerce-variation.single_variation:not(:empty) { @apply mb-3; }
+.woocommerce .karma-sepet-formu table.variations tbody,
+.woocommerce .karma-sepet-formu table.variations tr { @apply flex w-full flex-col gap-3; }
+.woocommerce .karma-sepet-formu table.variations tr + tr { @apply mt-7; }
+.woocommerce .karma-sepet-formu table.variations th,
+.woocommerce .karma-sepet-formu table.variations td { @apply block w-full p-0 text-left; }
+.woocommerce .karma-sepet-formu table.variations th.label label { @apply text-kucuk font-semibold text-espresso; }
+.woocommerce .karma-sepet-formu .reset_variations { @apply mt-3 inline-block text-kucuk text-ikincil underline; }
+.woocommerce .karma-sepet-formu .single_variation_wrap .woocommerce-variation-price { @apply mb-2 text-fiyat font-semibold; }
+.woocommerce .karma-sepet-formu .woocommerce-variation-add-to-cart,
+.woocommerce .karma-sepet-formu form.cart:not(.variations_form) { @apply flex flex-row items-stretch gap-3; }
+.woocommerce .karma-sepet-formu .quantity { @apply m-0 shrink-0; }
+.woocommerce .karma-sepet-formu .quantity .qty { @apply h-[60px] w-[72px] rounded-full border-[1.5px] border-cizgi-orta bg-beyaz text-center text-normal; }
+.woocommerce .karma-sepet-formu button.single_add_to_cart_button,
+.woocommerce .karma-sepet-formu button.single_add_to_cart_button.alt {
+  @apply float-none m-0 flex h-[60px] flex-1 items-center justify-center rounded-full bg-karamel px-8 text-normal font-semibold text-white hover:bg-[#744a30];
+}
+.woocommerce .karma-sepet-formu button.single_add_to_cart_button.disabled { @apply opacity-50; }
+.woocommerce .karma-sepet-formu .stock { @apply text-kucuk text-ikincil; }
+
+/* Renk ve beden seçicileri (assets/js/app.js oluşturur) */
+.secici-renk { @apply size-[44px] rounded-full border border-black/10 outline outline-[1.5px] outline-offset-[3px] outline-transparent transition-[outline-color]; }
+.secici-renk[aria-pressed="true"] { @apply outline-espresso; }
+.secici-beden { @apply flex h-12 min-w-[56px] flex-1 items-center justify-center rounded-[10px] border-[1.5px] border-cizgi-orta bg-beyaz px-3 text-normal font-medium text-espresso transition-colors hover:border-espresso; }
+.secici-beden[aria-pressed="true"] { @apply border-espresso bg-espresso text-krem; }
+.secici-beden:disabled, .secici-renk:disabled { @apply cursor-not-allowed opacity-35 line-through; }
+
+/* Bildirimler, sayfalama, fiyat */
+.woocommerce-notices-wrapper:not(:empty) { @apply mb-6; }
+.woocommerce .woocommerce-message, .woocommerce .woocommerce-info, .woocommerce .woocommerce-error { @apply rounded-xl border-t-0 bg-bej text-espresso before:text-karamel; }
+.woocommerce a.button, .woocommerce button.button, .woocommerce input.button { @apply rounded-full bg-espresso px-6 py-3 font-semibold text-krem hover:bg-black hover:text-krem; }
+.woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt { @apply bg-karamel text-white hover:bg-[#744a30]; }
+.price del { @apply mr-2 font-normal text-ikincil opacity-80; }
+.price ins { @apply no-underline; }
+.woocommerce nav.woocommerce-pagination ul { @apply border-0; }
+.woocommerce nav.woocommerce-pagination ul li { @apply mx-1 border-0; }
+.woocommerce nav.woocommerce-pagination ul li a, .woocommerce nav.woocommerce-pagination ul li span { @apply rounded-full px-3 py-2; }
+.woocommerce nav.woocommerce-pagination ul li span.current { @apply bg-espresso text-krem; }
+
+/* Sayfa içeriği (yasal metinler vb.) */
+.icerik h2 { @apply mb-3 mt-10 font-serif text-[32px] font-medium; }
+.icerik h3 { @apply mb-2 mt-8 text-[20px] font-semibold; }
+.icerik p, .icerik ul, .icerik ol { @apply mb-4; }
+.icerik ul { @apply list-disc pl-6; }
+.icerik ol { @apply list-decimal pl-6; }
+.icerik a { @apply underline; }
+
+/* Benzer ürünler, mağaza üst satırı */
+.karma-benzer .related > h2 { @apply mb-7 font-serif text-[32px] font-medium leading-[1.2] md:text-h2; }
+.woocommerce .woocommerce-result-count { @apply mb-6 text-kucuk text-ikincil; }
+.woocommerce .woocommerce-ordering { @apply mb-6; }
+.woocommerce .woocommerce-ordering select { @apply h-11 rounded-full border-[1.5px] border-cizgi-orta bg-beyaz px-4 text-kucuk; }
+.woocommerce ul.karma-urunler::before, .woocommerce ul.karma-urunler::after { content: none !important; }
+.woocommerce ul.karma-urunler li.product { @apply !float-none !m-0 !w-auto !p-0; }
+.woocommerce .price, .woocommerce div.product p.price, .woocommerce div.product span.price { @apply !text-espresso; }
